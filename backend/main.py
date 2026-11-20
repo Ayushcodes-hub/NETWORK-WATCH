@@ -1,18 +1,3 @@
-BASE_DIR = Path(__file__).resolve().parent.parent
-FRONTEND_DIR = BASE_DIR / "frontend"
-DATA_DIR = BASE_DIR / "backend" / "data"
-DB_PATH = DATA_DIR / "network_watch.db"
-if getattr(sys, "frozen", False):
-    # Running as a PyInstaller exe: bundled files live in a temp folder,
-    # but the database must persist between runs.
-    BASE_DIR = Path(sys._MEIPASS)
-    DATA_DIR = Path(os.getenv("LOCALAPPDATA", str(Path.home()))) / "NetworkWatch" / "data"
-else:
-    BASE_DIR = Path(__file__).resolve().parent.parent
-    DATA_DIR = BASE_DIR / "backend" / "data"
-
-FRONTEND_DIR = BASE_DIR / "frontend"
-DB_PATH = DATA_DIR / "network_watch.db"
 import csv
 import io
 import ipaddress
@@ -32,6 +17,22 @@ from fastapi import FastAPI, Query
 from fastapi.responses import FileResponse, Response, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+FRONTEND_DIR = BASE_DIR / "frontend"
+DATA_DIR = BASE_DIR / "backend" / "data"
+DB_PATH = DATA_DIR / "network_watch.db"
+if getattr(sys, "frozen", False):
+    # Running as a PyInstaller exe: bundled files live in a temp folder,
+    # but the database must persist between runs.
+    BASE_DIR = Path(sys._MEIPASS)
+    DATA_DIR = Path(os.getenv("LOCALAPPDATA", str(Path.home()))) / "NetworkWatch" / "data"
+else:
+    BASE_DIR = Path(__file__).resolve().parent.parent
+    DATA_DIR = BASE_DIR / "backend" / "data"
+
+FRONTEND_DIR = BASE_DIR / "frontend"
+DB_PATH = DATA_DIR / "network_watch.db"
 
 from scapy.all import (
     AsyncSniffer, conf, get_if_list,
@@ -462,7 +463,7 @@ def get_interfaces():
         status = stats_by_name.get(name)
         result.append({
             "name": name,
-            "ipv4": ", ".join(ips) or "â€”",
+            "ipv4": ", ".join(ips) or "├óΓé¼ΓÇ¥",
             "is_up": bool(status.isup) if status else False,
             "speed_mbps": status.speed if status else 0,
             "bytes_sent": counter.bytes_sent,
