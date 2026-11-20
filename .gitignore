@@ -15,3 +15,11 @@ frontend/index.backup.html
 backend/main.pre-deployment.py
 backend/apply_demo_patch.py
 backend/isolate_demo_worker.py
+# Python environments
+.build-venv/
+.build-venv313/
+# Generated build artifacts
+build/
+dist/
+*.spec
+# Python cache

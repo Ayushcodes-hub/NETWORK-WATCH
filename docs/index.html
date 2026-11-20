@@ -1,0 +1,263 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080d18">
+<meta name="description" content="NETWORK WATCH — A Windows network monitoring and heuristic intrusion detection platform built with Python, FastAPI and Scapy.">
+<title>NETWORK WATCH | Network Intelligence</title>
+
+<style>
+:root {
+  color-scheme: dark;
+  --bg: #080d18;
+  --panel: #101a2b;
+  --border: #23334b;
+  --text: #e8effb;
+  --muted: #91a2bb;
+  --blue: #60a5fa;
+  --green: #34d399;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, Segoe UI, Arial, sans-serif;
+  line-height: 1.65;
+}
+a { color: inherit; text-decoration: none; }
+.container { width: min(1080px, 90%); margin: auto; }
+nav {
+  border-bottom: 1px solid var(--border);
+  padding: 18px 0;
+}
+.nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+.brand { font-weight: 800; letter-spacing: 1.5px; }
+.nav-links { display: flex; gap: 22px; color: var(--muted); font-size: 14px; }
+.hero { padding: 100px 0 75px; }
+.eyebrow {
+  color: var(--green);
+  font-size: 12px;
+  letter-spacing: 2px;
+  font-weight: 800;
+}
+h1 {
+  font-size: clamp(42px, 7vw, 76px);
+  line-height: 1.05;
+  letter-spacing: -3px;
+  margin: 18px 0;
+}
+.gradient {
+  background: linear-gradient(100deg, #60a5fa, #34d399);
+  color: transparent;
+  background-clip: text;
+}
+.lead { color: var(--muted); max-width: 680px; font-size: 18px; }
+.actions { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 32px; }
+.button {
+  display: inline-block;
+  padding: 13px 21px;
+  border-radius: 9px;
+  font-weight: 700;
+  font-size: 14px;
+  background: #2563eb;
+}
+.button.secondary { background: var(--panel); border: 1px solid var(--border); }
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--green);
+  font-size: 12px;
+  border: 1px solid #225b49;
+  background: #10251f;
+  padding: 7px 12px;
+  border-radius: 30px;
+}
+.dot { width: 7px; height: 7px; background: var(--green); border-radius: 50%; }
+.section { padding: 55px 0; }
+.section h2 { font-size: 29px; margin-bottom: 8px; }
+.section-intro { color: var(--muted); margin-top: 0; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 17px;
+  margin-top: 28px;
+}
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 23px;
+  border-radius: 13px;
+}
+.card h3 { margin: 0 0 8px; font-size: 17px; }
+.card p { color: var(--muted); font-size: 14px; margin: 0; }
+.card-icon { font-size: 23px; margin-bottom: 12px; }
+.download {
+  background: linear-gradient(120deg, #10213a, #102a2b);
+  border: 1px solid #31506b;
+  border-radius: 17px;
+  padding: 35px;
+  margin: 25px 0;
+}
+.download p { color: var(--muted); }
+.small { font-size: 12px; color: var(--muted); }
+code {
+  color: #a5d8ff;
+  background: #080d18;
+  padding: 3px 7px;
+  border-radius: 5px;
+}
+footer {
+  border-top: 1px solid var(--border);
+  padding: 30px 0;
+  margin-top: 55px;
+  color: var(--muted);
+  font-size: 13px;
+}
+@media(max-width:700px) {
+  .grid { grid-template-columns: 1fr; }
+  .nav-links { gap: 11px; font-size: 12px; }
+  .hero { padding-top: 65px; }
+  h1 { letter-spacing: -2px; }
+  .download { padding: 23px; }
+}
+</style>
+</head>
+
+<body>
+<nav>
+  <div class="container nav-inner">
+    <a class="brand" href="#">NETWORK WATCH</a>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#download">Download</a>
+      <a href="https://github.com/Ayushcodes-hub/NETWORK-WATCH">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main class="container">
+  <section class="hero">
+    <div class="status"><span class="dot"></span> NETWORK MONITORING PLATFORM</div>
+    <p class="eyebrow">NETWORK INTELLIGENCE · SECURITY · ANALYTICS</p>
+    <h1>See your network.<br><span class="gradient">Understand its activity.</span></h1>
+    <p class="lead">
+      NETWORK WATCH is a network monitoring and heuristic intrusion
+      detection platform that analyzes network traffic, tracks protocols,
+      monitors connections and identifies suspicious activity.
+    </p>
+    <div class="actions">
+      <a class="button" href="https://github.com/Ayushcodes-hub/NETWORK-WATCH/releases/latest/download/NETWORK-WATCH.exe">Download for Windows</a>
+      <a class="button secondary" href="https://frontend-1z130vhcc-a-001e.vercel.app/">Open Online Demo</a>
+      <a class="button secondary" href="https://github.com/Ayushcodes-hub/NETWORK-WATCH">View Source Code</a>
+    </div>
+    <p class="small">Windows 10/11 · 64-bit · Npcap required for live packet capture</p>
+  </section>
+
+  <section class="section" id="features">
+    <h2>Network visibility and analysis</h2>
+    <p class="section-intro">A unified dashboard for observing network behavior and investigating suspicious patterns.</p>
+    <div class="grid">
+      <article class="card">
+        <div class="card-icon">◈</div>
+        <h3>Packet Monitoring</h3>
+        <p>Capture and analyze live network packets using Scapy and Npcap.</p>
+      </article>
+      <article class="card">
+        <div class="card-icon">⌁</div>
+        <h3>Protocol Analytics</h3>
+        <p>Observe TCP, UDP, DNS, TLS, ICMP and other traffic categories.</p>
+      </article>
+      <article class="card">
+        <div class="card-icon">⚑</div>
+        <h3>Threat Detection</h3>
+        <p>Identify suspicious patterns such as possible port scanning and unusual port activity.</p>
+      </article>
+      <article class="card">
+        <div class="card-icon">◎</div>
+        <h3>Connection Monitoring</h3>
+        <p>Inspect network connections and activity across available interfaces.</p>
+      </article>
+      <article class="card">
+        <div class="card-icon">▤</div>
+        <h3>Historical Analytics</h3>
+        <p>Use local SQLite storage and historical activity records for analysis.</p>
+      </article>
+      <article class="card">
+        <div class="card-icon">⇩</div>
+        <h3>Data Export</h3>
+        <p>Export monitoring events and security alerts in CSV format.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="download">
+    <div class="download">
+      <p class="eyebrow">WINDOWS DESKTOP APPLICATION</p>
+      <h2>Run NETWORK WATCH locally.</h2>
+      <p>
+        Download the standalone Windows executable. It starts a local
+        monitoring server and opens the dashboard in your browser.
+        Your local monitoring database is stored on your computer.
+      </p>
+      <div class="actions">
+        <a class="button" href="https://github.com/Ayushcodes-hub/NETWORK-WATCH/releases/latest/download/NETWORK-WATCH.exe">Download NETWORK-WATCH.exe</a>
+        <a class="button secondary" href="https://github.com/Ayushcodes-hub/NETWORK-WATCH/releases/latest">All Releases</a>
+      </div>
+      <p class="small">
+        Install Npcap before using live packet capture. Administrator
+        permissions may be required. Npcap is a separate dependency and
+        is not bundled with the executable.
+      </p>
+      <p class="small">
+        Windows may display a SmartScreen warning because the application
+        is not digitally signed. Download only from this project's official
+        GitHub Releases page.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Technology stack</h2>
+    <p class="section-intro">Built with established technologies for network monitoring and web application development.</p>
+    <div class="grid">
+      <article class="card"><h3>Python + FastAPI</h3><p>Backend application and API services.</p></article>
+      <article class="card"><h3>Scapy + Npcap</h3><p>Packet capture and network analysis.</p></article>
+      <article class="card"><h3>JavaScript + SQLite</h3><p>Dashboard interface and persistent local data.</p></article>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Online demonstration</h2>
+    <p class="section-intro">
+      Explore the hosted dashboard using synthetic demonstration data.
+      The public demo does not capture visitors' actual network traffic.
+    </p>
+    <div class="actions">
+      <a class="button" href="https://frontend-1z130vhcc-a-001e.vercel.app/">Launch Demo</a>
+      <a class="button secondary" href="https://network-watch-api.onrender.com/api/health">API Health</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <strong>NETWORK WATCH</strong>
+    <p>Educational network monitoring and heuristic intrusion detection project.</p>
+    <p>
+      <a href="https://github.com/Ayushcodes-hub/NETWORK-WATCH">GitHub Repository</a>
+      ·
+      <a href="https://github.com/Ayushcodes-hub/NETWORK-WATCH/releases">Releases</a>
+    </p>
+    <p class="small">This project is not a replacement for a production-grade intrusion detection system.</p>
+  </div>
+</footer>
+</body>
+</html>

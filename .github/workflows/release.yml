@@ -1,0 +1,72 @@
+name: Build and Release NETWORK WATCH
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  build-windows:
+    name: Build Windows Executable
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r backend/requirements.txt
+          python -m pip install pyinstaller
+
+      - name: Run public demo regression tests
+        run: python -m backend.test_demo
+
+      - name: Build standalone Windows executable
+        run: |
+          python -m PyInstaller `
+            --noconfirm `
+            --clean `
+            --onefile `
+            --console `
+            --name NETWORK-WATCH `
+            --add-data "frontend;frontend" `
+            --collect-all scapy `
+            --collect-all fastapi `
+            --collect-all uvicorn `
+            --collect-all starlette `
+            --hidden-import backend.demo_mode `
+            --hidden-import backend.deployment_config `
+            run_app.py
+
+      - name: Verify executable
+        run: |
+          if (!(Test-Path "dist/NETWORK-WATCH.exe")) {
+            throw "Executable was not generated."
+          }
+          Get-Item "dist/NETWORK-WATCH.exe" |
+            Select-Object Name, Length
+
+      - name: Generate SHA256 checksum
+        shell: pwsh
+        run: |
+          $hash = (Get-FileHash "dist/NETWORK-WATCH.exe" -Algorithm SHA256).Hash
+          "$hash  NETWORK-WATCH.exe" |
+            Set-Content "dist/NETWORK-WATCH.exe.sha256" -Encoding ascii
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          files: |
+            dist/NETWORK-WATCH.exe
+            dist/NETWORK-WATCH.exe.sha256

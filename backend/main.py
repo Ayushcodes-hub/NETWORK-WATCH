@@ -18,6 +18,7 @@ import io
 import ipaddress
 import os
 import socket
+import sys
 import sqlite3
 import threading
 import time
@@ -28,7 +29,7 @@ from pathlib import Path
 
 import psutil
 from fastapi import FastAPI, Query
-from fastapi.responses import FileResponse, StreamingResponse
+from fastapi.responses import FileResponse, Response, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
@@ -37,11 +38,22 @@ from scapy.all import (
     IP, IPv6, TCP, UDP, DNS, DNSQR, ICMP, Raw
 )
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-FRONTEND_DIR = BASE_DIR / "frontend"
-DATA_DIR = BASE_DIR / "backend" / "data"
-DB_PATH = DATA_DIR / "network_watch.db"
+if getattr(sys, "frozen", False):
+    # PyInstaller extracts bundled application resources here.
+    BASE_DIR = Path(sys._MEIPASS)
+    FRONTEND_DIR = BASE_DIR / "frontend"
 
+    # Keep user data outside the temporary PyInstaller extraction folder.
+    local_app_data = Path(
+        os.environ.get("LOCALAPPDATA", Path.home() / "AppData" / "Local")
+    )
+    DATA_DIR = local_app_data / "NetworkWatch" / "data"
+else:
+    BASE_DIR = Path(__file__).resolve().parent.parent
+    FRONTEND_DIR = BASE_DIR / "frontend"
+    DATA_DIR = BASE_DIR / "backend" / "data"
+
+DB_PATH = DATA_DIR / "network_watch.db"
 DATA_DIR.mkdir(parents=True, exist_ok=True)
 
 DB_LOCK = threading.RLock()
@@ -736,6 +748,14 @@ app.mount(
     StaticFiles(directory=str(FRONTEND_DIR)),
     name="static"
 )
+
+
+@app.get("/config.js")
+def local_frontend_config():
+    return Response(
+        content="window.NETWORK_WATCH_API = '';",
+        media_type="application/javascript"
+    )
 
 
 @app.get("/")
