@@ -988,6 +988,20 @@ app.add_middleware(
 @app.middleware("http")
 async def public_demo_mode_middleware(request, call_next):
     if DEMO_MODE and request.url.path.startswith("/api/"):
+        if request.method == "OPTIONS":
+            from fastapi.responses import Response
+            return Response(
+                status_code=204,
+                headers={
+                    "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+                    "Access-Control-Allow-Headers": request.headers.get(
+                        "access-control-request-headers", "*"
+                    ),
+                    "Access-Control-Max-Age": "600",
+                },
+            )
+
         try:
             response = build_demo_response(
                 request.url.path,
@@ -996,6 +1010,9 @@ async def public_demo_mode_middleware(request, call_next):
             if response is not None:
                 response.headers["Cache-Control"] = "no-store"
                 response.headers["X-Network-Watch-Mode"] = "public-demo"
+                response.headers["Access-Control-Allow-Origin"] = "*"
+                response.headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS"
+                response.headers["Access-Control-Allow-Headers"] = "*"
                 return response
         except Exception:
             from fastapi.responses import JSONResponse
