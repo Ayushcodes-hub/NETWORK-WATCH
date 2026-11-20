@@ -1,4 +1,4 @@
-﻿import csv
+import csv
 import io
 from datetime import datetime, timezone, timedelta
 from fastapi.responses import JSONResponse, PlainTextResponse

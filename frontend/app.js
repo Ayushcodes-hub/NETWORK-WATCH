@@ -1,4 +1,4 @@
-﻿
+
 const API_BASE = (window.NETWORK_WATCH_API || "").replace(/\/+$/, "");
 const $ = (id) => document.getElementById(id);
 
@@ -60,11 +60,11 @@ function formatBytes(bytes) {
 }
 
 function formatTime(value) {
-    if (!value) return "â€”";
+    if (!value) return "—";
 
     const date = new Date(value);
 
-    if (Number.isNaN(date.getTime())) return "â€”";
+    if (Number.isNaN(date.getTime())) return "—";
 
     return date.toLocaleTimeString();
 }
@@ -100,10 +100,10 @@ function displayInterfaceName(device) {
     const guid = match[1].toLowerCase();
 
     if (guid === "989d2192-81ea-4ccd-a902-9aff69629a12") {
-        return "WiFi â€” Qualcomm Wireless Adapter";
+        return "WiFi — Qualcomm Wireless Adapter";
     }
 
-    return `Network adapter â€” ${guid.slice(0, 8)}`;
+    return `Network adapter — ${guid.slice(0, 8)}`;
 }
 
 async function loadCaptureInterfaces() {
@@ -266,10 +266,10 @@ function renderConnections(items) {
     $("connectionsTable").innerHTML = items.slice(0, 100).map(item => `
         <tr>
             <td>${escapeHTML(item.process)}</td>
-            <td>${escapeHTML(item.pid ?? "â€”")}</td>
+            <td>${escapeHTML(item.pid ?? "—")}</td>
             <td><span class="protocol-badge">${escapeHTML(item.protocol)}</span></td>
-            <td>${escapeHTML(item.local_ip)}:${escapeHTML(item.local_port ?? "â€”")}</td>
-            <td>${escapeHTML(item.remote_ip || "â€”")}:${escapeHTML(item.remote_port ?? "â€”")}</td>
+            <td>${escapeHTML(item.local_ip)}:${escapeHTML(item.local_port ?? "—")}</td>
+            <td>${escapeHTML(item.remote_ip || "—")}:${escapeHTML(item.remote_port ?? "—")}</td>
             <td>${escapeHTML(item.status)}</td>
         </tr>
     `).join("");
@@ -285,11 +285,11 @@ function renderEvents(items) {
     $("eventsTable").innerHTML = items.map(item => `
         <tr>
             <td><span class="protocol-badge">${escapeHTML(item.protocol)}</span></td>
-            <td>${escapeHTML(item.src_ip)}:${escapeHTML(item.src_port ?? "â€”")}</td>
-            <td>${escapeHTML(item.dst_ip)}:${escapeHTML(item.dst_port ?? "â€”")}</td>
+            <td>${escapeHTML(item.src_ip)}:${escapeHTML(item.src_port ?? "—")}</td>
+            <td>${escapeHTML(item.dst_ip)}:${escapeHTML(item.dst_port ?? "—")}</td>
             <td>${formatBytes(item.packet_size)}</td>
             <td>${escapeHTML(item.direction)}</td>
-            <td>${escapeHTML(item.dns_query || "â€”")}</td>
+            <td>${escapeHTML(item.dns_query || "—")}</td>
             <td>${formatTime(item.timestamp)}</td>
         </tr>
     `).join("");
@@ -307,7 +307,7 @@ function renderInterfaces(items) {
             <td>${escapeHTML(item.name)}</td>
             <td>
                 <span class="${item.is_up ? "state-up" : "state-down"}">
-                    ${item.is_up ? "â— UP" : "â— DOWN"}
+                    ${item.is_up ? "● UP" : "● DOWN"}
                 </span>
             </td>
             <td>${escapeHTML(item.ipv4)}</td>

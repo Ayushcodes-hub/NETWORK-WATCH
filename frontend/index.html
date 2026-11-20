@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -28,19 +28,19 @@
 
         <nav class="navigation">
             <a class="nav-item active" href="#overview">
-                <span class="nav-icon">â—ˆ</span> Overview
+                <span class="nav-icon">◈</span> Overview
             </a>
             <a class="nav-item" href="#analytics">
-                <span class="nav-icon">â–¥</span> Traffic analytics
+                <span class="nav-icon">▥</span> Traffic analytics
             </a>
             <a class="nav-item" href="#connections">
-                <span class="nav-icon">âŒ˜</span> Connections
+                <span class="nav-icon">⌘</span> Connections
             </a>
             <a class="nav-item" href="#events">
-                <span class="nav-icon">â–¤</span> Packet events
+                <span class="nav-icon">▤</span> Packet events
             </a>
             <a class="nav-item" href="#alerts">
-                <span class="nav-icon">âš </span> Security alerts
+                <span class="nav-icon">⚠</span> Security alerts
                 <span class="nav-count" id="sidebarAlertCount">0</span>
             </a>
         </nav>
@@ -89,7 +89,7 @@
 
         <section class="capture-panel">
             <div class="capture-information">
-                <div class="capture-icon">âŒ</div>
+                <div class="capture-icon">⌁</div>
                 <div>
                     <div class="capture-title">Packet capture engine</div>
                     <div class="capture-subtitle" id="captureMessage">
@@ -104,11 +104,11 @@
                 </select>
 
                 <button id="startButton" class="button button-primary">
-                    <span>â–¶</span> Start capture
+                    <span>▶</span> Start capture
                 </button>
 
                 <button id="stopButton" class="button button-danger" disabled>
-                    â–  Stop
+                    ■ Stop
                 </button>
             </div>
         </section>
@@ -118,7 +118,7 @@
             <article class="metric-card">
                 <div class="metric-top">
                     <span class="metric-label">PACKETS CAPTURED</span>
-                    <span class="metric-symbol">âŒ</span>
+                    <span class="metric-symbol">⌁</span>
                 </div>
                 <div class="metric-value" id="packetCount">0</div>
                 <div class="metric-foot">Since application start</div>
@@ -127,7 +127,7 @@
             <article class="metric-card">
                 <div class="metric-top">
                     <span class="metric-label">DATA OBSERVED</span>
-                    <span class="metric-symbol">â‡…</span>
+                    <span class="metric-symbol">⇅</span>
                 </div>
                 <div class="metric-value" id="totalBytes">0 B</div>
                 <div class="metric-foot">Captured packet bytes</div>
@@ -136,7 +136,7 @@
             <article class="metric-card">
                 <div class="metric-top">
                     <span class="metric-label">ACTIVE CONNECTIONS</span>
-                    <span class="metric-symbol">â—Ž</span>
+                    <span class="metric-symbol">◎</span>
                 </div>
                 <div class="metric-value" id="connectionCount">0</div>
                 <div class="metric-foot">Operating system socket inventory</div>
@@ -145,7 +145,7 @@
             <article class="metric-card metric-alert">
                 <div class="metric-top">
                     <span class="metric-label">SECURITY ALERTS</span>
-                    <span class="metric-symbol">âš </span>
+                    <span class="metric-symbol">⚠</span>
                 </div>
                 <div class="metric-value" id="alertCount">0</div>
                 <div class="metric-foot">Recorded detection events</div>
@@ -190,7 +190,7 @@
                 </div>
 
                 <div class="direction-row">
-                    <div class="direction-icon upload">â†‘</div>
+                    <div class="direction-icon upload">↑</div>
                     <div class="direction-details">
                         <span>Outbound traffic</span>
                         <strong id="uploadBytes">0 B</strong>
@@ -198,7 +198,7 @@
                 </div>
 
                 <div class="direction-row">
-                    <div class="direction-icon download">â†“</div>
+                    <div class="direction-icon download">↓</div>
                     <div class="direction-details">
                         <span>Inbound traffic</span>
                         <strong id="downloadBytes">0 B</strong>
@@ -236,7 +236,7 @@
                         Heuristic detections and unusual network activity.
                     </p>
                 </div>
-                <a class="text-link" href="#" onclick="window.location.href=(window.NETWORK_WATCH_API || '') + '/api/export/alerts.csv'; return false;">Export alerts â†—</a>
+                <a class="text-link" href="#" onclick="window.location.href=(window.NETWORK_WATCH_API || '') + '/api/export/alerts.csv'; return false;">Export alerts ↗</a>
             </div>
 
             <div class="table-wrap">
@@ -299,7 +299,7 @@
                         Search captured packet metadata and DNS queries.
                     </p>
                 </div>
-                <a class="text-link" href="#" onclick="window.location.href=(window.NETWORK_WATCH_API || '') + '/api/export/events.csv'; return false;">Export events â†—</a>
+                <a class="text-link" href="#" onclick="window.location.href=(window.NETWORK_WATCH_API || '') + '/api/export/events.csv'; return false;">Export events ↗</a>
             </div>
 
             <div class="table-toolbar">
@@ -374,8 +374,8 @@
 
         <footer class="page-footer">
             <span>NETWORK WATCH v3.0</span>
-            <span>LOCAL NETWORK TELEMETRY Â· NO CLOUD TRANSMISSION</span>
-            <span id="lastUpdated">LAST UPDATED â€”</span>
+            <span>LOCAL NETWORK TELEMETRY · NO CLOUD TRANSMISSION</span>
+            <span id="lastUpdated">LAST UPDATED —</span>
         </footer>
 
     </main>

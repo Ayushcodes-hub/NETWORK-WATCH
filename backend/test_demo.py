@@ -1,4 +1,4 @@
-﻿import os
+import os
 os.environ["DEMO_MODE"] = "true"
 os.environ["FRONTEND_ORIGIN"] = "http://localhost:5500"
 
