@@ -1,0 +1,390 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NETWORK WATCH | Security Operations</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+
+<body>
+<div class="app-shell">
+
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-mark">N<span>W</span></div>
+            <div>
+                <div class="brand-name">NETWORK WATCH</div>
+                <div class="brand-subtitle">SECURITY INTELLIGENCE</div>
+            </div>
+        </div>
+
+        <div class="sidebar-label">MONITORING</div>
+
+        <nav class="navigation">
+            <a class="nav-item active" href="#overview">
+                <span class="nav-icon">â—ˆ</span> Overview
+            </a>
+            <a class="nav-item" href="#analytics">
+                <span class="nav-icon">â–¥</span> Traffic analytics
+            </a>
+            <a class="nav-item" href="#connections">
+                <span class="nav-icon">âŒ˜</span> Connections
+            </a>
+            <a class="nav-item" href="#events">
+                <span class="nav-icon">â–¤</span> Packet events
+            </a>
+            <a class="nav-item" href="#alerts">
+                <span class="nav-icon">âš </span> Security alerts
+                <span class="nav-count" id="sidebarAlertCount">0</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-label">SYSTEM</div>
+
+        <div class="system-card">
+            <div class="system-card-heading">
+                <span class="status-dot" id="systemDot"></span>
+                <span id="systemState">SYSTEM ONLINE</span>
+            </div>
+            <div class="system-version">NETWORK WATCH v3.0</div>
+            <div class="system-description">Local monitoring engine</div>
+        </div>
+
+        <div class="sidebar-footer">
+            <div class="footer-indicator"></div>
+            LOCAL ENVIRONMENT
+        </div>
+    </aside>
+
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <div class="eyebrow">SECURITY OPERATIONS / LOCAL HOST</div>
+                <h1>Network overview</h1>
+                <p class="page-description">
+                    Real-time network visibility and threat-pattern monitoring.
+                </p>
+            </div>
+
+            <div class="topbar-right">
+                <div class="clock-panel">
+                    <div class="clock-label">LOCAL TIME</div>
+                    <div id="clock" class="clock-value">--:--:--</div>
+                </div>
+                <div class="live-pill">
+                    <span class="status-dot"></span>
+                    LIVE SYSTEM
+                </div>
+            </div>
+        </header>
+
+
+        <section class="capture-panel">
+            <div class="capture-information">
+                <div class="capture-icon">âŒ</div>
+                <div>
+                    <div class="capture-title">Packet capture engine</div>
+                    <div class="capture-subtitle" id="captureMessage">
+                        Select a network adapter to begin monitoring.
+                    </div>
+                </div>
+            </div>
+
+            <div class="capture-controls">
+                <select id="interfaceSelect" aria-label="Network adapter">
+                    <option value="">Loading adapters...</option>
+                </select>
+
+                <button id="startButton" class="button button-primary">
+                    <span>â–¶</span> Start capture
+                </button>
+
+                <button id="stopButton" class="button button-danger" disabled>
+                    â–  Stop
+                </button>
+            </div>
+        </section>
+
+
+        <section class="metrics-grid">
+            <article class="metric-card">
+                <div class="metric-top">
+                    <span class="metric-label">PACKETS CAPTURED</span>
+                    <span class="metric-symbol">âŒ</span>
+                </div>
+                <div class="metric-value" id="packetCount">0</div>
+                <div class="metric-foot">Since application start</div>
+            </article>
+
+            <article class="metric-card">
+                <div class="metric-top">
+                    <span class="metric-label">DATA OBSERVED</span>
+                    <span class="metric-symbol">â‡…</span>
+                </div>
+                <div class="metric-value" id="totalBytes">0 B</div>
+                <div class="metric-foot">Captured packet bytes</div>
+            </article>
+
+            <article class="metric-card">
+                <div class="metric-top">
+                    <span class="metric-label">ACTIVE CONNECTIONS</span>
+                    <span class="metric-symbol">â—Ž</span>
+                </div>
+                <div class="metric-value" id="connectionCount">0</div>
+                <div class="metric-foot">Operating system socket inventory</div>
+            </article>
+
+            <article class="metric-card metric-alert">
+                <div class="metric-top">
+                    <span class="metric-label">SECURITY ALERTS</span>
+                    <span class="metric-symbol">âš </span>
+                </div>
+                <div class="metric-value" id="alertCount">0</div>
+                <div class="metric-foot">Recorded detection events</div>
+            </article>
+        </section>
+
+
+        <section class="content-grid" id="analytics">
+
+            <article class="panel traffic-panel">
+                <div class="panel-header">
+                    <div>
+                        <div class="panel-kicker">NETWORK TELEMETRY</div>
+                        <h2>Protocol distribution</h2>
+                    </div>
+                    <span class="panel-tag">ALL CAPTURED EVENTS</span>
+                </div>
+
+                <div class="protocol-layout">
+                    <div class="chart-container">
+                        <canvas id="protocolChart"></canvas>
+                        <div class="chart-center">
+                            <strong id="chartTotal">0</strong>
+                            <span>PACKETS</span>
+                        </div>
+                    </div>
+
+                    <div id="protocolLegend" class="protocol-legend">
+                        <div class="empty-state">Waiting for traffic...</div>
+                    </div>
+                </div>
+            </article>
+
+
+            <article class="panel traffic-summary">
+                <div class="panel-header">
+                    <div>
+                        <div class="panel-kicker">TRAFFIC DIRECTION</div>
+                        <h2>Network throughput</h2>
+                    </div>
+                    <span class="panel-tag">CAPTURED BYTES</span>
+                </div>
+
+                <div class="direction-row">
+                    <div class="direction-icon upload">â†‘</div>
+                    <div class="direction-details">
+                        <span>Outbound traffic</span>
+                        <strong id="uploadBytes">0 B</strong>
+                    </div>
+                </div>
+
+                <div class="direction-row">
+                    <div class="direction-icon download">â†“</div>
+                    <div class="direction-details">
+                        <span>Inbound traffic</span>
+                        <strong id="downloadBytes">0 B</strong>
+                    </div>
+                </div>
+
+                <div class="summary-divider"></div>
+
+                <div class="summary-stat">
+                    <span>TCP packets</span>
+                    <strong id="tcpCount">0</strong>
+                </div>
+                <div class="summary-stat">
+                    <span>UDP packets</span>
+                    <strong id="udpCount">0</strong>
+                </div>
+                <div class="summary-stat">
+                    <span>DNS packets</span>
+                    <strong id="dnsCount">0</strong>
+                </div>
+                <div class="summary-stat">
+                    <span>TLS records detected</span>
+                    <strong id="tlsCount">0</strong>
+                </div>
+            </article>
+        </section>
+
+
+        <section class="panel" id="alerts">
+            <div class="panel-header">
+                <div>
+                    <div class="panel-kicker">THREAT DETECTION</div>
+                    <h2>Security alert centre</h2>
+                    <p class="panel-description">
+                        Heuristic detections and unusual network activity.
+                    </p>
+                </div>
+                <a class="text-link" href="#" onclick="window.location.href=(window.NETWORK_WATCH_API || '') + '/api/export/alerts.csv'; return false;">Export alerts â†—</a>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>SEVERITY</th>
+                        <th>DETECTION</th>
+                        <th>DESCRIPTION</th>
+                        <th>EVIDENCE</th>
+                        <th>TIMESTAMP</th>
+                    </tr>
+                    </thead>
+                    <tbody id="alertsTable">
+                    <tr><td colspan="5" class="empty-state">No alerts recorded yet.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+
+        <section class="panel" id="connections">
+            <div class="panel-header">
+                <div>
+                    <div class="panel-kicker">HOST INTELLIGENCE</div>
+                    <h2>Active connections</h2>
+                    <p class="panel-description">
+                        Operating-system socket inventory and associated processes.
+                    </p>
+                </div>
+                <span class="panel-tag">PSUTIL / WINDOWS SOCKETS</span>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>PROCESS</th>
+                        <th>PID</th>
+                        <th>PROTOCOL</th>
+                        <th>LOCAL ENDPOINT</th>
+                        <th>REMOTE ENDPOINT</th>
+                        <th>STATE</th>
+                    </tr>
+                    </thead>
+                    <tbody id="connectionsTable">
+                    <tr><td colspan="6" class="empty-state">Loading connections...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+
+        <section class="panel" id="events">
+            <div class="panel-header">
+                <div>
+                    <div class="panel-kicker">PACKET INTELLIGENCE</div>
+                    <h2>Packet event explorer</h2>
+                    <p class="panel-description">
+                        Search captured packet metadata and DNS queries.
+                    </p>
+                </div>
+                <a class="text-link" href="#" onclick="window.location.href=(window.NETWORK_WATCH_API || '') + '/api/export/events.csv'; return false;">Export events â†—</a>
+            </div>
+
+            <div class="table-toolbar">
+                <input
+                    id="eventSearch"
+                    type="search"
+                    placeholder="Search IP, port or DNS query..."
+                >
+
+                <select id="protocolFilter">
+                    <option value="ALL">All protocols</option>
+                    <option value="TCP">TCP</option>
+                    <option value="UDP">UDP</option>
+                    <option value="DNS">DNS</option>
+                    <option value="TLS">TLS</option>
+                    <option value="ICMP">ICMP</option>
+                    <option value="OTHER">Other</option>
+                </select>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>PROTOCOL</th>
+                        <th>SOURCE</th>
+                        <th>DESTINATION</th>
+                        <th>SIZE</th>
+                        <th>DIRECTION</th>
+                        <th>DNS QUERY</th>
+                        <th>TIME</th>
+                    </tr>
+                    </thead>
+                    <tbody id="eventsTable">
+                    <tr><td colspan="7" class="empty-state">Waiting for packet events...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+
+        <section class="panel">
+            <div class="panel-header">
+                <div>
+                    <div class="panel-kicker">NETWORK HARDWARE</div>
+                    <h2>Network interfaces</h2>
+                    <p class="panel-description">
+                        Adapter status, IPv4 address and operating-system counters.
+                    </p>
+                </div>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>INTERFACE</th>
+                        <th>STATUS</th>
+                        <th>IPv4</th>
+                        <th>SPEED</th>
+                        <th>BYTES SENT</th>
+                        <th>BYTES RECEIVED</th>
+                    </tr>
+                    </thead>
+                    <tbody id="interfacesTable">
+                    <tr><td colspan="6" class="empty-state">Loading interfaces...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+
+        <footer class="page-footer">
+            <span>NETWORK WATCH v3.0</span>
+            <span>LOCAL NETWORK TELEMETRY Â· NO CLOUD TRANSMISSION</span>
+            <span id="lastUpdated">LAST UPDATED â€”</span>
+        </footer>
+
+    </main>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script src="/config.js"></script>
+    <script src="/static/app.js" defer></script>
+</body>
+</html>
+
