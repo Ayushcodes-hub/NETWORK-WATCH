@@ -1,3 +1,7 @@
+BASE_DIR = Path(__file__).resolve().parent.parent
+FRONTEND_DIR = BASE_DIR / "frontend"
+DATA_DIR = BASE_DIR / "backend" / "data"
+DB_PATH = DATA_DIR / "network_watch.db"
 import csv
 import io
 import ipaddress
