@@ -1,4 +1,4 @@
-﻿import csv
+import csv
 import io
 import ipaddress
 import os
@@ -973,7 +973,7 @@ except ModuleNotFoundError:
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
+    allow_origins=["*"] if DEMO_MODE else [
         FRONTEND_ORIGIN,
         "http://localhost:5500",
         "http://127.0.0.1:5500",
