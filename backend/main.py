@@ -2,6 +2,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 FRONTEND_DIR = BASE_DIR / "frontend"
 DATA_DIR = BASE_DIR / "backend" / "data"
 DB_PATH = DATA_DIR / "network_watch.db"
+if getattr(sys, "frozen", False):
+    # Running as a PyInstaller exe: bundled files live in a temp folder,
+    # but the database must persist between runs.
+    BASE_DIR = Path(sys._MEIPASS)
+    DATA_DIR = Path(os.getenv("LOCALAPPDATA", str(Path.home()))) / "NetworkWatch" / "data"
+else:
+    BASE_DIR = Path(__file__).resolve().parent.parent
+    DATA_DIR = BASE_DIR / "backend" / "data"
+
+FRONTEND_DIR = BASE_DIR / "frontend"
+DB_PATH = DATA_DIR / "network_watch.db"
 import csv
 import io
 import ipaddress
