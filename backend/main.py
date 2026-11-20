@@ -1,4 +1,4 @@
-import csv
+﻿import csv
 import io
 import ipaddress
 import os
@@ -435,7 +435,7 @@ def get_interfaces():
         status = stats_by_name.get(name)
         result.append({
             "name": name,
-            "ipv4": ", ".join(ips) or "—",
+            "ipv4": ", ".join(ips) or "â€”",
             "is_up": bool(status.isup) if status else False,
             "speed_mbps": status.speed if status else 0,
             "bytes_sent": counter.bytes_sent,
@@ -1005,4 +1005,5 @@ async def public_demo_mode_middleware(request, call_next):
             )
 
     return await call_next(request)
+
 
