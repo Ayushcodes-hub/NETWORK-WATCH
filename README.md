@@ -1,79 +1,84 @@
-﻿# NETWORK WATCH
+<div align="center">
 
-**A real-time network monitoring and heuristic intrusion detection platform.**
+# 🛰️ NETWORK WATCH
 
-NETWORK WATCH captures and analyzes network traffic, monitors network interfaces and connections, tracks protocol activity, and identifies potentially suspicious behavior through heuristic detection.
+### Real-Time Network Monitoring & Heuristic Intrusion Detection Platform
+
+NETWORK WATCH captures and analyzes live network traffic, monitors interfaces and connections, tracks protocol activity, and flags suspicious behavior through heuristic detection — all from a clean, browser-based dashboard.
 
 [![Windows Download](https://img.shields.io/badge/Download-Windows%20EXE-blue?logo=windows)](https://github.com/Ayushcodes-hub/NETWORK-WATCH/releases/latest)
 [![GitHub Repository](https://img.shields.io/badge/GitHub-Repository-black?logo=github)](https://github.com/Ayushcodes-hub/NETWORK-WATCH)
 [![Python](https://img.shields.io/badge/Python-3.13-blue?logo=python)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/Backend-FastAPI-009688?logo=fastapi)](https://fastapi.tiangolo.com/)
+[![License](https://img.shields.io/badge/License-Educational%20Use-lightgrey)](#disclaimer)
 
-**Project website:** https://ayushcodes-hub.github.io/NETWORK-WATCH/
+**🌐 Project Website:** [ayushcodes-hub.github.io/NETWORK-WATCH](https://ayushcodes-hub.github.io/NETWORK-WATCH/) &nbsp;•&nbsp; **🚀 Live Demo:** [frontend-1z130vhcc-a-001e.vercel.app](https://frontend-1z130vhcc-a-001e.vercel.app/)
 
-**Online demonstration:** https://frontend-1z130vhcc-a-001e.vercel.app/
+</div>
 
 ---
 
-## Table of Contents
+## 📑 Table of Contents
 
-- [Overview](#overview)
-- [Features](#features)
-- [Architecture](#architecture)
-- [Windows Installation](#windows-installation)
-- [Running from Source](#running-from-source)
-- [Online Demonstration](#online-demonstration)
-- [API](#api)
-- [Automated Testing](#automated-testing)
-- [Building the Executable](#building-the-executable)
-- [Security and Privacy](#security-and-privacy)
-- [Limitations](#limitations)
-- [Disclaimer](#disclaimer)
+- [Overview](#-overview)
+- [Features](#-features)
+- [Architecture](#-architecture)
+- [Technology Stack](#-technology-stack)
+- [Windows Installation](#-windows-installation)
+- [Running from Source](#-running-from-source)
+- [Online Demonstration](#-online-demonstration)
+- [API Reference](#-api-reference)
+- [Automated Testing](#-automated-testing)
+- [Building the Executable](#-building-the-executable)
+- [Security & Privacy](#-security--privacy)
+- [Limitations](#-limitations)
+- [Disclaimer](#-disclaimer)
 
-## Overview
+---
 
-NETWORK WATCH provides a unified interface for observing network activity and investigating suspicious traffic patterns.
+## 🔍 Overview
 
-The application combines packet capture, protocol classification, connection monitoring, historical storage, and heuristic detection in a FastAPI-powered backend with a browser-based dashboard.
+NETWORK WATCH provides a unified interface for observing network activity and investigating suspicious traffic patterns in real time. It combines **packet capture**, **protocol classification**, **connection monitoring**, **historical storage**, and **heuristic detection** in a FastAPI-powered backend paired with a lightweight browser dashboard.
 
-It supports two distinct operating modes:
+It ships with two operating modes:
 
 | Mode | Purpose |
-|---|---|
-| Local monitoring | Captures actual network traffic on the user's machine |
-| Public demonstration | Displays synthetic data without capturing visitor traffic |
+|------|---------|
+| 🖥️ **Local Monitoring** | Captures real, live network traffic on the user's own machine |
+| 🌐 **Public Demonstration** | Displays synthetic traffic data without touching visitor traffic |
 
-The Windows desktop executable runs the backend locally and opens the dashboard in the user's browser.
+The Windows desktop executable runs the backend locally and automatically opens the dashboard in your browser — no manual setup required.
 
-## Features
+---
 
-### Network Monitoring
+## ✨ Features
 
-- Live network packet monitoring.
-- Network interface discovery.
-- Traffic volume and packet statistics.
-- Upload and download traffic tracking.
-- TCP, UDP, DNS, TLS, ICMP and other protocol categorization.
-- Connection monitoring.
+### 📡 Network Monitoring
+- Live network packet monitoring
+- Automatic network interface discovery
+- Traffic volume and packet statistics
+- Upload / download traffic tracking
+- Protocol categorization — TCP, UDP, DNS, TLS, ICMP, and more
+- Real-time connection monitoring
 
-### Security Analysis
+### 🛡️ Security Analysis
+- Heuristic port-scan detection
+- Suspicious port activity monitoring
+- DNS activity tracking
+- Security event & alert generation
+- Historical activity analysis
 
-- Heuristic port-scan detection.
-- Suspicious port activity monitoring.
-- DNS activity tracking.
-- Security event and alert generation.
-- Historical activity analysis.
+### 📊 Dashboard & Data
+- Browser-based monitoring dashboard
+- Protocol-level analytics
+- Live traffic statistics
+- SQLite-backed historical storage
+- Full event & alert history
+- One-click CSV export
 
-### Dashboard and Data
+---
 
-- Browser-based monitoring dashboard.
-- Protocol analytics.
-- Traffic statistics.
-- SQLite-backed historical storage.
-- Event and alert history.
-- CSV export functionality.
-
-## Architecture
+## 🏗️ Architecture
 
 ```mermaid
 flowchart TD
@@ -86,140 +91,122 @@ flowchart TD
     E --> H[REST API]
     F --> H
     G --> H
-    H --> I[HTML CSS JavaScript Dashboard]
+    H --> I[HTML / CSS / JavaScript Dashboard]
 ```
 
-### Technology Stack
+## 🧰 Technology Stack
 
-| Component | Technology |
+| Layer | Technology |
 |---|---|
 | Backend | Python, FastAPI |
-| Packet capture | Scapy, Npcap |
+| Packet Capture | Scapy, Npcap |
 | Frontend | HTML, CSS, JavaScript |
 | Database | SQLite |
-| System monitoring | psutil |
-| Local server | Uvicorn |
-| Desktop packaging | PyInstaller |
-| Backend hosting | Render |
-| Frontend hosting | Vercel |
-| Automated builds | GitHub Actions |
-| Project website | GitHub Pages |
+| System Monitoring | psutil |
+| Local Server | Uvicorn |
+| Desktop Packaging | PyInstaller |
+| Backend Hosting | Render |
+| Frontend Hosting | Vercel |
+| CI/CD | GitHub Actions |
+| Project Website | GitHub Pages |
 
-## Windows Installation
+---
+
+## 🪟 Windows Installation
 
 ### Requirements
-
-- Windows 10 or Windows 11, 64-bit.
-- Npcap installed for live packet capture.
-- Administrator permissions may be required for packet capture.
-- A modern web browser.
+- Windows 10 / 11, 64-bit
+- [Npcap](https://npcap.com/) installed for live packet capture
+- Administrator permissions (may be required for packet capture)
+- A modern web browser
 
 ### 1. Download
-
-Visit:
-
-**https://github.com/Ayushcodes-hub/NETWORK-WATCH/releases/latest**
-
-Download:
-
-`NETWORK-WATCH.exe`
+Grab the latest build from the **[Releases page](https://github.com/Ayushcodes-hub/NETWORK-WATCH/releases/latest)**:
+```
+NETWORK-WATCH.exe
+```
 
 ### 2. Install Npcap
+Download and install Npcap from the [official site](https://npcap.com/) **before** attempting live packet capture — it's a separate system dependency and is not bundled with the app.
 
-Download Npcap from its official website:
+### 3. Run the Application
+Double-click `NETWORK-WATCH.exe`. On launch, it will:
 
-https://npcap.com/
+1. Check Windows permissions
+2. Detect Npcap
+3. Start the local FastAPI server
+4. Open the monitoring dashboard
+5. Begin local monitoring once initialization succeeds
 
-Install it before attempting live packet capture. Npcap is a separate system dependency and is not bundled with NETWORK WATCH.
+> Keep the console window open while using the dashboard. Press `Ctrl+C` to shut down.
+> If packet capture fails, try running the executable **as Administrator**.
 
-### 3. Run the application
-
-Double-click `NETWORK-WATCH.exe`.
-
-The application will:
-
-1. Check Windows permissions.
-2. Detect Npcap.
-3. Start the local FastAPI server.
-4. Open the monitoring dashboard.
-5. Begin local monitoring when initialization succeeds.
-
-Keep the application console open while using the dashboard.
-
-Press `Ctrl+C` in the console to shut down the application.
-
-If packet capture fails, try running the executable as Administrator.
-
-### 4. Verify the download
-
-The release includes a SHA256 checksum file.
-
-In PowerShell:
+### 4. Verify the Download
+Each release ships with a SHA256 checksum. Verify it in PowerShell:
 
 ```powershell
 Get-FileHash .\NETWORK-WATCH.exe -Algorithm SHA256
 ```
 
-Compare the displayed hash against the corresponding `.sha256` release asset.
+Compare the output against the corresponding `.sha256` file in the release assets. **Only download from the official GitHub Releases page.**
 
-Only download the executable from the official GitHub Releases page.
+---
 
-## Running from Source
+## 🧑‍💻 Running from Source
 
 ### Requirements
+- Python 3.13 (recommended)
+- Npcap (Windows, for live packet capture)
+- Git
+- A modern web browser
 
-- Python 3.13 recommended.
-- Npcap on Windows for live packet capture.
-- Git.
-- A modern web browser.
+### Clone & Set Up
 
-### Clone the repository
-
-```powershell
+```bash
 git clone https://github.com/Ayushcodes-hub/NETWORK-WATCH.git
 cd NETWORK-WATCH
 ```
-
-### Create a virtual environment
 
 ```powershell
 py -3.13 -m venv .venv
 .\.venv\Scripts\Activate.ps1
 ```
 
-### Install dependencies
+### Install Dependencies
 
-```powershell
+```bash
 python -m pip install --upgrade pip
 pip install -r backend/requirements.txt
 ```
 
-### Start the application
+### Launch
 
-```powershell
+```bash
 python -m uvicorn backend.main:app --host 127.0.0.1 --port 8000
 ```
 
-Open:
+Then open **[http://127.0.0.1:8000](http://127.0.0.1:8000)** in your browser.
 
-http://127.0.0.1:8000
+---
 
-## Online Demonstration
+## 🌐 Online Demonstration
 
-The hosted demonstration uses synthetic network data.
+The hosted demo runs entirely on **synthetic network data** and is fully isolated from local live monitoring — it never captures a visitor's real traffic.
 
-- **Frontend:** https://frontend-1z130vhcc-a-001e.vercel.app/
-- **Backend:** https://network-watch-api.onrender.com/
+| | |
+|---|---|
+| **Frontend** | [frontend-1z130vhcc-a-001e.vercel.app](https://frontend-1z130vhcc-a-001e.vercel.app/) |
+| **Backend** | [network-watch-api.onrender.com](https://network-watch-api.onrender.com/) |
 
-The public demonstration is isolated from local live monitoring. It does not capture visitors' actual network traffic.
+---
 
-## API
+## 📡 API Reference
 
-The FastAPI backend exposes endpoints for monitoring and analysis.
+The FastAPI backend exposes the following REST endpoints:
 
 | Endpoint | Purpose |
 |---|---|
-| `/api/health` | Backend health and database status |
+| `/api/health` | Backend health & database status |
 | `/api/status` | Monitoring and traffic statistics |
 | `/api/interfaces` | Available network interfaces |
 | `/api/alerts` | Security alerts |
@@ -227,48 +214,44 @@ The FastAPI backend exposes endpoints for monitoring and analysis.
 | `/api/analytics` | Traffic analytics |
 | `/api/connections` | Connection information |
 | `/api/history` | Historical monitoring information |
-| `/api/export/events.csv` | Export events |
-| `/api/export/alerts.csv` | Export alerts |
+| `/api/export/events.csv` | Export events as CSV |
+| `/api/export/alerts.csv` | Export alerts as CSV |
 
-Interactive API documentation is available at:
+Interactive Swagger docs are available at:
+```
+http://127.0.0.1:8000/docs
+```
 
-`http://127.0.0.1:8000/docs`
+---
 
-## Automated Testing
+## ✅ Automated Testing
 
-The repository includes public demonstration regression tests.
+The repo includes a regression suite for the public demo mode:
 
-Run:
-
-```powershell
+```bash
 python -m backend.test_demo
 ```
 
-The test suite verifies:
+**Coverage (11 checks):**
+- Health endpoint availability
+- Monitoring status endpoint
+- Alerts and events
+- Analytics and connections
+- Interface and history endpoints
+- CSV export endpoints
+- Public demo packet-capture restrictions
+- Public demo response isolation
 
-- Health endpoint availability.
-- Monitoring status endpoint.
-- Alerts and events.
-- Analytics and connections.
-- Interface and history endpoints.
-- CSV export endpoints.
-- Public demo restrictions on packet capture.
-- Public demo response isolation.
+---
 
-The current regression suite contains 11 API checks.
+## 📦 Building the Executable
 
-## Building the Executable
+Built with **PyInstaller**:
 
-The Windows executable can be built with PyInstaller.
-
-Install dependencies:
-
-```powershell
+```bash
 pip install -r backend/requirements.txt
 pip install pyinstaller
 ```
-
-Build:
 
 ```powershell
 python -m PyInstaller `
@@ -287,39 +270,45 @@ python -m PyInstaller `
     run_app.py
 ```
 
-The executable will be generated at:
+Output: `dist/NETWORK-WATCH.exe`
 
-`dist/NETWORK-WATCH.exe`
-
-GitHub Actions automates the Windows build and release when a version tag beginning with `v` is pushed.
-
-## Security and Privacy
-
-NETWORK WATCH distinguishes local monitoring from its public synthetic-data demonstration.
-
-- The local desktop application binds its monitoring server to `127.0.0.1`.
-- Local monitoring data is stored in a SQLite database on the user's computer.
-- The public demo uses synthetic data.
-- The public demo blocks live packet-capture requests.
-- Npcap is required separately for Windows packet capture.
-
-The application is designed for authorized network monitoring. Only monitor networks and devices for which you have permission.
-
-## Limitations
-
-- Detection is heuristic, not signature-complete or machine-learning-based.
-- Alerts may include false positives.
-- Packet capture capabilities depend on operating-system permissions and Npcap configuration.
-- The application is not a replacement for an enterprise SIEM, firewall, or production-grade IDS/IPS.
-
-## Disclaimer
-
-NETWORK WATCH is an educational network monitoring and heuristic intrusion detection project. It is intended for authorized testing, learning, and network visibility.
-
-Use responsibly and comply with applicable laws and network policies.
+> GitHub Actions automatically builds and releases the Windows executable whenever a version tag beginning with `v` is pushed.
 
 ---
 
-**NETWORK WATCH** | Network Monitoring · Traffic Analytics · Security Visibility
+## 🔐 Security & Privacy
 
-[GitHub Repository](https://github.com/Ayushcodes-hub/NETWORK-WATCH) · [Latest Release](https://github.com/Ayushcodes-hub/NETWORK-WATCH/releases/latest) · [Project Website](https://ayushcodes-hub.github.io/NETWORK-WATCH/)
+- The local desktop app binds its monitoring server to `127.0.0.1` only
+- Local monitoring data stays in a local SQLite database on your machine
+- The public demo uses **synthetic data only**
+- The public demo **blocks** all live packet-capture requests
+- Npcap must be installed separately for Windows packet capture
+
+> ⚠️ **NETWORK WATCH is designed for authorized network monitoring only.** Only monitor networks and devices you have explicit permission to observe.
+
+---
+
+## ⚠️ Limitations
+
+- Detection is **heuristic**, not signature-complete or ML-based
+- Alerts may include false positives
+- Packet capture depends on OS permissions and Npcap configuration
+- Not a replacement for an enterprise SIEM, firewall, or production-grade IDS/IPS
+
+---
+
+## 📄 Disclaimer
+
+NETWORK WATCH is an **educational** network monitoring and heuristic intrusion detection project, intended for authorized testing, learning, and network visibility.
+
+**Use responsibly and comply with all applicable laws and network policies.**
+
+---
+
+<div align="center">
+
+**NETWORK WATCH** · Network Monitoring · Traffic Analytics · Security Visibility
+
+[Repository](https://github.com/Ayushcodes-hub/NETWORK-WATCH) · [Latest Release](https://github.com/Ayushcodes-hub/NETWORK-WATCH/releases/latest) · [Project Website](https://ayushcodes-hub.github.io/NETWORK-WATCH/)
+
+</div>
